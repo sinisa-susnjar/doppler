@@ -14,3 +14,4 @@ doppler-test-*
 *.o
 *.obj
 *.lst
+*.a

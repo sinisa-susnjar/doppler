@@ -1,9 +1,17 @@
 {
-	"authors": [
-		"Sinisa Susnjar"
-	],
-	"copyright": "Copyright © 2023, Sinisa Susnjar",
-	"description": "D binding for the poppler PDF rendering library",
-	"license": "MIT",
-	"name": "doppler"
+  "authors": [ "Sinisa Susnjar" ],
+  "copyright": "Copyright © 2023, Sinisa Susnjar",
+  "description": "D binding for the poppler PDF rendering library",
+  "license": "MIT",
+  "name": "doppler",
+  "preGenerateCommands": [ "$PACKAGE_DIR/pregen" ],
+  "configurations": [
+    {
+      "name": "lib",
+      "targetType": "staticLibrary",
+      "lflags-linux": [ "$PACKAGE_DIR/3rdparty/poppler/build/libpoppler.a" ],
+      "lflags-osx": [ "$PACKAGE_DIR/3rdparty/poppler/build/libpoppler.a" ],
+      "lflags-windows": [ "$PACKAGE_DIR/3rdparty/poppler/build/libpoppler.lib" ]
+    }
+  ]
 }
