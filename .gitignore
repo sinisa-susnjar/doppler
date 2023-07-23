@@ -1,0 +1,16 @@
+.dub
+docs.json
+__dummy.html
+docs/
+/doppler
+doppler.so
+doppler.dylib
+doppler.dll
+doppler.a
+doppler.lib
+doppler-test-*
+*.exe
+*.pdb
+*.o
+*.obj
+*.lst

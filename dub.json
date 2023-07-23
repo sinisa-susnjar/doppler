@@ -1,0 +1,9 @@
+{
+	"authors": [
+		"Sinisa Susnjar"
+	],
+	"copyright": "Copyright © 2023, Sinisa Susnjar",
+	"description": "D binding for the poppler PDF rendering library",
+	"license": "MIT",
+	"name": "doppler"
+}

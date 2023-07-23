@@ -1,0 +1,6 @@
+PACKAGE_DIR=${PACKAGE_DIR:-$PWD}
+git submodule update --init --recursive
+mkdir -p $PACKAGE_DIR/3rdparty/poppler/build
+cd $PACKAGE_DIR/3rdparty/poppler/build
+cmake ..
+make
