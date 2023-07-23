@@ -1,0 +1,10 @@
+{
+    "authors": [ "Sinisa Susnjar" ],
+    "copyright": "Copyright © 2023, Sinisa Susnjar",
+    "description": "Sample PDF viewer using doppler library",
+    "license": "MIT",
+    "name": "pdfview",
+    "dependencies": {
+        "doppler": { "path": "../../" }
+    }
+}

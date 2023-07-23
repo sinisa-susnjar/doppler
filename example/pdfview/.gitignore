@@ -1,0 +1,16 @@
+.dub
+docs.json
+__dummy.html
+docs/
+/pdfview
+pdfview.so
+pdfview.dylib
+pdfview.dll
+pdfview.a
+pdfview.lib
+pdfview-test-*
+*.exe
+*.pdb
+*.o
+*.obj
+*.lst

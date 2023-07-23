@@ -1,2 +1,1 @@
-# doppler
-D binding for the poppler PDF rendering library
+# Doppler - D bindings for the poppler PDF rendering library
