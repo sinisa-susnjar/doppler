@@ -21,22 +21,10 @@ extern (C) {
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-// #ifndef __POPPLER_PAGE_H__
-// #define __POPPLER_PAGE_H__
-
-// #include <glib-object.h>
-
-// #include "poppler.h"
-
-// #include <cairo.h>
-
-// G_BEGIN_DECLS
-
 // #define POPPLER_TYPE_PAGE (poppler_page_get_type())
 // #define POPPLER_PAGE(obj) (G_TYPE_CHECK_INSTANCE_CAST((obj), POPPLER_TYPE_PAGE, PopplerPage))
 // #define POPPLER_IS_PAGE(obj) (G_TYPE_CHECK_INSTANCE_TYPE((obj), POPPLER_TYPE_PAGE))
 
-// POPPLER_PUBLIC
 @safe @nogc GType poppler_page_get_type() pure nothrow;
 
 struct PopplerFormField;
@@ -45,84 +33,56 @@ struct PopplerAnnot;
 
 import gtkc.cairotypes;
 
-// POPPLER_PUBLIC
 @safe @nogc void poppler_page_render(PopplerPage *page, cairo_t *cairo) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc void poppler_page_render_for_printing(PopplerPage *page, cairo_t *cairo) pure nothrow;
-// POPPLER_PUBLIC
-@safe @nogc void poppler_page_render_for_printing_with_options(PopplerPage *page, cairo_t *cairo, PopplerPrintFlags options) pure nothrow;
-// POPPLER_PUBLIC
+@safe @nogc void poppler_page_render_for_printing_with_options(PopplerPage *page, cairo_t *cairo,
+                                        PopplerPrintFlags options) pure nothrow;
 @safe @nogc cairo_surface_t *poppler_page_get_thumbnail(PopplerPage *page) pure nothrow;
-// POPPLER_PUBLIC
-@safe @nogc void poppler_page_render_selection(PopplerPage *page, cairo_t *cairo, PopplerRectangle *selection, PopplerRectangle *old_selection, PopplerSelectionStyle style, PopplerColor *glyph_color, PopplerColor *background_color) pure nothrow;
+@safe @nogc void poppler_page_render_selection(PopplerPage *page, cairo_t *cairo,
+                                        PopplerRectangle *selection, PopplerRectangle *old_selection,
+                                        PopplerSelectionStyle style, PopplerColor *glyph_color,
+                                        PopplerColor *background_color) pure nothrow;
 
-// POPPLER_PUBLIC
 @safe @nogc void poppler_page_get_size(PopplerPage *page, double *width, double *height) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc int poppler_page_get_index(PopplerPage *page) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc gchar *poppler_page_get_label(PopplerPage *page) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc double poppler_page_get_duration(PopplerPage *page) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerPageTransition *poppler_page_get_transition(PopplerPage *page) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc gboolean poppler_page_get_thumbnail_size(PopplerPage *page, int *width, int *height) pure nothrow;
-// POPPLER_PUBLIC
-@safe @nogc GList *poppler_page_find_text_with_options(PopplerPage *page, const char *text, PopplerFindFlags options) pure nothrow;
-// POPPLER_PUBLIC
+@safe @nogc GList *poppler_page_find_text_with_options(PopplerPage *page, const char *text,
+                                        PopplerFindFlags options) pure nothrow;
 @safe @nogc GList *poppler_page_find_text(PopplerPage *page, const char *text) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc void poppler_page_render_to_ps(PopplerPage *page, PopplerPSFile *ps_file) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc char *poppler_page_get_text(PopplerPage *page) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc char *poppler_page_get_text_for_area(PopplerPage *page, PopplerRectangle *area) pure nothrow;
-// POPPLER_PUBLIC
-@safe @nogc char *poppler_page_get_selected_text(PopplerPage *page, PopplerSelectionStyle style, PopplerRectangle *selection) pure nothrow;
-// POPPLER_PUBLIC
-@safe @nogc cairo_region_t *poppler_page_get_selected_region(PopplerPage *page, gdouble scale, PopplerSelectionStyle style, PopplerRectangle *selection) pure nothrow;
-// POPPLER_PUBLIC
-// G_GNUC_DEPRECATED_FOR(poppler_page_get_selected_region);
-@safe @nogc GList *poppler_page_get_selection_region(PopplerPage *page, gdouble scale, PopplerSelectionStyle style, PopplerRectangle *selection) pure nothrow;
-// POPPLER_PUBLIC
-// G_GNUC_DEPRECATED_FOR(cairo_region_destroy);
+@safe @nogc char *poppler_page_get_selected_text(PopplerPage *page, PopplerSelectionStyle style,
+                                        PopplerRectangle *selection) pure nothrow;
+@safe @nogc cairo_region_t *poppler_page_get_selected_region(PopplerPage *page, gdouble scale,
+                                        PopplerSelectionStyle style, PopplerRectangle *selection) pure nothrow;
+deprecated("use poppler_page_get_selected_region")
+@safe @nogc GList *poppler_page_get_selection_region(PopplerPage *page, gdouble scale,
+                                        PopplerSelectionStyle style, PopplerRectangle *selection) pure nothrow;
+deprecated("use cairo_region_destroy")
 @safe @nogc void poppler_page_selection_region_free(GList *region) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc GList *poppler_page_get_link_mapping(PopplerPage *page) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc void poppler_page_free_link_mapping(GList *list) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc GList *poppler_page_get_image_mapping(PopplerPage *page) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc void poppler_page_free_image_mapping(GList *list) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc cairo_surface_t *poppler_page_get_image(PopplerPage *page, gint image_id) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc GList *poppler_page_get_form_field_mapping(PopplerPage *page) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc void poppler_page_free_form_field_mapping(GList *list) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc GList *poppler_page_get_annot_mapping(PopplerPage *page) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc void poppler_page_free_annot_mapping(GList *list) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc void poppler_page_add_annot(PopplerPage *page, PopplerAnnot *annot) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc void poppler_page_remove_annot(PopplerPage *page, PopplerAnnot *annot) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc void poppler_page_get_crop_box(PopplerPage *page, PopplerRectangle *rect) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc gboolean poppler_page_get_bounding_box(PopplerPage *page, PopplerRectangle *rect) pure nothrow;
-// POPPLER_PUBLIC
-@safe @nogc gboolean poppler_page_get_text_layout(PopplerPage *page, PopplerRectangle **rectangles, guint *n_rectangles) pure nothrow;
-// POPPLER_PUBLIC
-@safe @nogc gboolean poppler_page_get_text_layout_for_area(PopplerPage *page, PopplerRectangle *area, PopplerRectangle **rectangles, guint *n_rectangles) pure nothrow;
-// POPPLER_PUBLIC
+@safe @nogc gboolean poppler_page_get_text_layout(PopplerPage *page, PopplerRectangle **rectangles,
+                                        guint *n_rectangles) pure nothrow;
+@safe @nogc gboolean poppler_page_get_text_layout_for_area(PopplerPage *page, PopplerRectangle *area,
+                                        PopplerRectangle **rectangles, guint *n_rectangles) pure nothrow;
 @safe @nogc GList *poppler_page_get_text_attributes(PopplerPage *page) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc void poppler_page_free_text_attributes(GList *list) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc GList *poppler_page_get_text_attributes_for_area(PopplerPage *page, PopplerRectangle *area) pure nothrow;
 
 /* A rectangle on a page, with coordinates in PDF points. */
@@ -145,17 +105,11 @@ struct PopplerRectangle
     gdouble y2;
 }
 
-// POPPLER_PUBLIC
 @safe @nogc GType poppler_rectangle_get_type() pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerRectangle *poppler_rectangle_new() pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerRectangle *poppler_rectangle_copy(PopplerRectangle *rectangle) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc void poppler_rectangle_free(PopplerRectangle *rectangle) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc gboolean poppler_rectangle_find_get_match_continued(const PopplerRectangle *rectangle) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc gboolean poppler_rectangle_find_get_ignored_hyphen(const PopplerRectangle *rectangle) pure nothrow;
 
 /* A point on a page, with coordinates in PDF points. */
@@ -171,15 +125,11 @@ struct PopplerPoint
 {
     gdouble x;
     gdouble y;
-};
+}
 
-// POPPLER_PUBLIC
 @safe @nogc GType poppler_point_get_type() pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerPoint *poppler_point_new() pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerPoint *poppler_point_copy(PopplerPoint *point) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc void poppler_point_free(PopplerPoint *point) pure nothrow;
 
 /* PopplerQuadrilateral */
@@ -208,15 +158,11 @@ struct PopplerQuadrilateral
     PopplerPoint p2;
     PopplerPoint p3;
     PopplerPoint p4;
-};
+}
 
-// POPPLER_PUBLIC
 @safe @nogc GType poppler_quadrilateral_get_type() pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerQuadrilateral *poppler_quadrilateral_new() pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerQuadrilateral *poppler_quadrilateral_copy(PopplerQuadrilateral *quad) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc void poppler_quadrilateral_free(PopplerQuadrilateral *quad) pure nothrow;
 
 /* A color in RGB */
@@ -236,15 +182,11 @@ struct PopplerColor
     guint16 red;
     guint16 green;
     guint16 blue;
-};
+}
 
-// POPPLER_PUBLIC
 @safe @nogc GType poppler_color_get_type() pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerColor *poppler_color_new() pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerColor *poppler_color_copy(PopplerColor *color) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc void poppler_color_free(PopplerColor *color) pure nothrow;
 
 /* Text attributes. */
@@ -271,15 +213,11 @@ struct PopplerTextAttributes
 
     gint start_index;
     gint end_index;
-};
+}
 
-// POPPLER_PUBLIC
 @safe @nogc GType poppler_text_attributes_get_type() pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerTextAttributes *poppler_text_attributes_new() pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerTextAttributes *poppler_text_attributes_copy(PopplerTextAttributes *text_attrs) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc void poppler_text_attributes_free(PopplerTextAttributes *text_attrs) pure nothrow;
 
 /* Mapping between areas on the current page and PopplerActions */
@@ -297,15 +235,11 @@ struct PopplerLinkMapping
 {
     PopplerRectangle area;
     PopplerAction *action;
-};
+}
 
-// POPPLER_PUBLIC
 @safe @nogc GType poppler_link_mapping_get_type() pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerLinkMapping *poppler_link_mapping_new() pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerLinkMapping *poppler_link_mapping_copy(PopplerLinkMapping *mapping) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc void poppler_link_mapping_free(PopplerLinkMapping *mapping) pure nothrow;
 
 /* Page Transition */
@@ -343,15 +277,11 @@ struct PopplerPageTransition
     gdouble scale;
     gboolean rectangular;
     gdouble duration_real;
-};
+}
 
-// POPPLER_PUBLIC
 @safe @nogc GType poppler_page_transition_get_type() pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerPageTransition *poppler_page_transition_new() pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerPageTransition *poppler_page_transition_copy(PopplerPageTransition *transition) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc void poppler_page_transition_free(PopplerPageTransition *transition) pure nothrow;
 
 /* Mapping between areas on the current page and images */
@@ -369,15 +299,11 @@ struct PopplerImageMapping
 {
     PopplerRectangle area;
     gint image_id;
-};
+}
 
-// POPPLER_PUBLIC
 @safe @nogc GType poppler_image_mapping_get_type() pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerImageMapping *poppler_image_mapping_new() pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerImageMapping *poppler_image_mapping_copy(PopplerImageMapping *mapping) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc void poppler_image_mapping_free(PopplerImageMapping *mapping) pure nothrow;
 
 /* Mapping between areas on the current page and form fields */
@@ -395,15 +321,11 @@ struct PopplerFormFieldMapping
 {
     PopplerRectangle area;
     PopplerFormField *field;
-};
+}
 
-// POPPLER_PUBLIC
 @safe @nogc GType poppler_form_field_mapping_get_type() pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerFormFieldMapping *poppler_form_field_mapping_new() pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerFormFieldMapping *poppler_form_field_mapping_copy(PopplerFormFieldMapping *mapping) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc void poppler_form_field_mapping_free(PopplerFormFieldMapping *mapping) pure nothrow;
 
 /* Mapping between areas on the current page and annots */
@@ -421,19 +343,11 @@ struct PopplerAnnotMapping
 {
     PopplerRectangle area;
     PopplerAnnot *annot;
-};
+}
 
-// POPPLER_PUBLIC
 @safe @nogc GType poppler_annot_mapping_get_type() pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerAnnotMapping *poppler_annot_mapping_new() pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerAnnotMapping *poppler_annot_mapping_copy(PopplerAnnotMapping *mapping) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc void poppler_annot_mapping_free(PopplerAnnotMapping *mapping) pure nothrow;
-
-// G_END_DECLS
-
-// #endif /* __POPPLER_PAGE_H__ */
 
 }

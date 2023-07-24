@@ -27,15 +27,6 @@ extern (C) {
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-// #ifndef __POPPLER_DOCUMENT_H__
-// #define __POPPLER_DOCUMENT_H__
-
-// #include <glib-object.h>
-// #include <gio/gio.h>
-// #include "poppler.h"
-
-// G_BEGIN_DECLS
-
 // #define POPPLER_TYPE_DOCUMENT (poppler_document_get_type())
 // #define POPPLER_DOCUMENT(obj) (G_TYPE_CHECK_INSTANCE_CAST((obj), POPPLER_TYPE_DOCUMENT, PopplerDocument))
 // #define POPPLER_IS_DOCUMENT(obj) (G_TYPE_CHECK_INSTANCE_TYPE((obj), POPPLER_TYPE_DOCUMENT))
@@ -312,172 +303,114 @@ struct PopplerFontsIter;
 struct PopplerLayer;
 struct PopplerLayersIter;
 
-// POPPLER_PUBLIC
-@safe @nogc GType poppler_document_get_type() pure nothrow; // G_GNUC_CONST;
-
-// POPPLER_PUBLIC
-@safe @nogc PopplerDocument *poppler_document_new_from_file(const char *uri, const char *password, GError **error) pure nothrow;
-// POPPLER_PUBLIC
-// G_GNUC_DEPRECATED_FOR(poppler_document_new_from_bytes);
+@safe @nogc GType poppler_document_get_type() pure nothrow;
+@safe @nogc PopplerDocument *poppler_document_new_from_file(const char *uri, const char *password,
+                                GError **error) pure nothrow;
+deprecated("use poppler_document_new_from_bytes")
 @safe @nogc PopplerDocument *poppler_document_new_from_data(char *data, int length,
                                 const char *password, GError **error) pure nothrow;
-// POPPLER_PUBLIC
-@safe @nogc PopplerDocument *poppler_document_new_from_bytes(GBytes *bytes, const char *password, GError **error) pure nothrow;
-// POPPLER_PUBLIC
+@safe @nogc PopplerDocument *poppler_document_new_from_bytes(GBytes *bytes, const char *password,
+                                GError **error) pure nothrow;
 @safe @nogc PopplerDocument *poppler_document_new_from_stream(GInputStream *stream, goffset length,
                                 const char *password, GCancellable *cancellable, GError **error) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerDocument *poppler_document_new_from_gfile(GFile *file, const char *password,
                                 GCancellable *cancellable, GError **error) pure nothrow;
 
 version(Windows) {
 } else {
-// POPPLER_PUBLIC
-@safe @nogc PopplerDocument *poppler_document_new_from_fd(int fd, const char *password, GError **error) pure nothrow;
-}
-
-// POPPLER_PUBLIC
-@safe @nogc gboolean poppler_document_save(PopplerDocument *document, const char *uri, GError **error) pure nothrow;
-// POPPLER_PUBLIC
-@safe @nogc gboolean poppler_document_save_a_copy(PopplerDocument *document, const char *uri, GError **error) pure nothrow;
-
-version (Windows) {
-} else {
-// POPPLER_PUBLIC
-@safe @nogc gboolean poppler_document_save_to_fd(PopplerDocument *document, int fd, gboolean include_changes,
+    @safe @nogc PopplerDocument *poppler_document_new_from_fd(int fd, const char *password,
                                 GError **error) pure nothrow;
 }
 
-// POPPLER_PUBLIC
-@safe @nogc gboolean poppler_document_get_id(PopplerDocument *document, gchar **permanent_id, gchar **update_id) pure nothrow;
-// POPPLER_PUBLIC
+@safe @nogc gboolean poppler_document_save(PopplerDocument *document, const char *uri,
+                                GError **error) pure nothrow;
+@safe @nogc gboolean poppler_document_save_a_copy(PopplerDocument *document, const char *uri,
+                                GError **error) pure nothrow;
+
+version (Windows) {
+} else {
+    @safe @nogc gboolean poppler_document_save_to_fd(PopplerDocument *document, int fd,
+                                gboolean include_changes, GError **error) pure nothrow;
+}
+
+@safe @nogc gboolean poppler_document_get_id(PopplerDocument *document, gchar **permanent_id,
+                                gchar **update_id) pure nothrow;
 @safe @nogc int poppler_document_get_n_pages(PopplerDocument *document) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerPage *poppler_document_get_page(PopplerDocument *document, int index) pure nothrow;
-// POPPLER_PUBLIC
-@safe @nogc PopplerPage *poppler_document_get_page_by_label(PopplerDocument *document, const char *label) pure nothrow;
-// POPPLER_PUBLIC
+@safe @nogc PopplerPage *poppler_document_get_page_by_label(PopplerDocument *document,
+                                const char *label) pure nothrow;
 @safe @nogc gchar *poppler_document_get_pdf_version_string(PopplerDocument *document) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc void poppler_document_get_pdf_version(PopplerDocument *document, guint *major_version,
-                                    guint *minor_version) pure nothrow;
-// POPPLER_PUBLIC
+                                guint *minor_version) pure nothrow;
 @safe @nogc gchar *poppler_document_get_title(PopplerDocument *document) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc void poppler_document_set_title(PopplerDocument *document, const gchar *title) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc gchar *poppler_document_get_author(PopplerDocument *document) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc void poppler_document_set_author(PopplerDocument *document, const gchar *author) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc gchar *poppler_document_get_subject(PopplerDocument *document) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc void poppler_document_set_subject(PopplerDocument *document, const gchar *subject) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc gchar *poppler_document_get_keywords(PopplerDocument *document) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc void poppler_document_set_keywords(PopplerDocument *document, const gchar *keywords) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc gchar *poppler_document_get_creator(PopplerDocument *document) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc void poppler_document_set_creator(PopplerDocument *document, const gchar *creator) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc gchar *poppler_document_get_producer(PopplerDocument *document) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc void poppler_document_set_producer(PopplerDocument *document, const gchar *producer) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc time_t poppler_document_get_creation_date(PopplerDocument *document) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc void poppler_document_set_creation_date(PopplerDocument *document, time_t creation_date) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc GDateTime *poppler_document_get_creation_date_time(PopplerDocument *document) pure nothrow;
-// POPPLER_PUBLIC
-@safe @nogc void poppler_document_set_creation_date_time(PopplerDocument *document, GDateTime *creation_datetime) pure nothrow;
-// POPPLER_PUBLIC
+@safe @nogc void poppler_document_set_creation_date_time(PopplerDocument *document,
+                                GDateTime *creation_datetime) pure nothrow;
 @safe @nogc time_t poppler_document_get_modification_date(PopplerDocument *document) pure nothrow;
-// POPPLER_PUBLIC
-@safe @nogc void poppler_document_set_modification_date(PopplerDocument *document, time_t modification_date) pure nothrow;
-// POPPLER_PUBLIC
+@safe @nogc void poppler_document_set_modification_date(PopplerDocument *document,
+                                time_t modification_date) pure nothrow;
 @safe @nogc GDateTime *poppler_document_get_modification_date_time(PopplerDocument *document) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc void poppler_document_set_modification_date_time(PopplerDocument *document,
                                 GDateTime *modification_datetime) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc gboolean poppler_document_is_linearized(PopplerDocument *document) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerPageLayout poppler_document_get_page_layout(PopplerDocument *document) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerPageMode poppler_document_get_page_mode(PopplerDocument *document) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerPermissions poppler_document_get_permissions(PopplerDocument *document) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc gchar *poppler_document_get_pdf_subtype_string(PopplerDocument *document) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerPDFSubtype poppler_document_get_pdf_subtype(PopplerDocument *document) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerPDFPart poppler_document_get_pdf_part(PopplerDocument *document) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerPDFConformance poppler_document_get_pdf_conformance(PopplerDocument *document) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc gchar *poppler_document_get_metadata(PopplerDocument *document) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerPrintScaling poppler_document_get_print_scaling(PopplerDocument *document) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerPrintDuplex poppler_document_get_print_duplex(PopplerDocument *document) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc gint poppler_document_get_print_n_copies(PopplerDocument *document) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerPageRange *poppler_document_get_print_page_ranges(PopplerDocument *document,
                                 int *n_ranges) pure nothrow; // G_GNUC_MALLOC;
 
 /* Attachments */
-// POPPLER_PUBLIC
 @safe @nogc guint poppler_document_get_n_attachments(PopplerDocument *document) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc gboolean poppler_document_has_attachments(PopplerDocument *document) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc GList *poppler_document_get_attachments(PopplerDocument *document) pure nothrow;
 
 /* Links */
-// POPPLER_PUBLIC
 @safe @nogc PopplerDest *poppler_document_find_dest(PopplerDocument *document, const gchar *link_name) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc GTree *poppler_document_create_dests_tree(PopplerDocument *document) pure nothrow;
 
 /* Form */
-// POPPLER_PUBLIC
 @safe @nogc PopplerFormField *poppler_document_get_form_field(PopplerDocument *document, gint id) pure nothrow;
 
-// POPPLER_PUBLIC
-@safe @nogc void poppler_document_reset_form(PopplerDocument *document, GList *fields, gboolean exclude_fields) pure nothrow;
+@safe @nogc void poppler_document_reset_form(PopplerDocument *document, GList *fields,
+                                gboolean exclude_fields) pure nothrow;
 /* Javascript */
-// POPPLER_PUBLIC
 @safe @nogc gboolean poppler_document_has_javascript(PopplerDocument *document) pure nothrow;
 
 /* Signatures */
-// POPPLER_PUBLIC
 @safe @nogc GList *poppler_document_get_signature_fields(PopplerDocument *document) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc gint poppler_document_get_n_signatures(const PopplerDocument *document) pure nothrow;
 
 /* Interface for getting the Index of a poppler_document */
 // #define POPPLER_TYPE_INDEX_ITER (poppler_index_iter_get_type())
-// POPPLER_PUBLIC
 @safe @nogc GType poppler_index_iter_get_type() pure nothrow; // G_GNUC_CONST;
-// POPPLER_PUBLIC
 @safe @nogc PopplerIndexIter *poppler_index_iter_new(PopplerDocument *document) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerIndexIter *poppler_index_iter_copy(PopplerIndexIter *iter) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc void poppler_index_iter_free(PopplerIndexIter *iter) pure nothrow;
 
-// POPPLER_PUBLIC
 @safe @nogc PopplerIndexIter *poppler_index_iter_get_child(PopplerIndexIter *parent) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc gboolean poppler_index_iter_is_open(PopplerIndexIter *iter) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerAction *poppler_index_iter_get_action(PopplerIndexIter *iter) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc gboolean poppler_index_iter_next(PopplerIndexIter *iter) pure nothrow;
 
 /* Interface for getting the Fonts of a poppler_document */
@@ -486,57 +419,35 @@ version (Windows) {
 // #define POPPLER_IS_FONT_INFO(obj) (G_TYPE_CHECK_INSTANCE_TYPE((obj), POPPLER_TYPE_FONT_INFO))
 // POPPLER_PUBLIC
 @safe @nogc GType poppler_font_info_get_type() pure nothrow; // G_GNUC_CONST;
-// POPPLER_PUBLIC
 @safe @nogc PopplerFontInfo *poppler_font_info_new(PopplerDocument *document) pure nothrow;
-// POPPLER_PUBLIC
-@safe @nogc gboolean poppler_font_info_scan(PopplerFontInfo *font_info, int n_pages, PopplerFontsIter **iter) pure nothrow;
-// POPPLER_PUBLIC
+@safe @nogc gboolean poppler_font_info_scan(PopplerFontInfo *font_info, int n_pages,
+                                PopplerFontsIter **iter) pure nothrow;
 @safe @nogc void poppler_font_info_free(PopplerFontInfo *font_info) pure nothrow;
 
 // #define POPPLER_TYPE_FONTS_ITER (poppler_fonts_iter_get_type())
-// POPPLER_PUBLIC
 @safe @nogc GType poppler_fonts_iter_get_type() pure nothrow; // G_GNUC_CONST;
-// POPPLER_PUBLIC
 @safe @nogc PopplerFontsIter *poppler_fonts_iter_copy(PopplerFontsIter *iter) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc void poppler_fonts_iter_free(PopplerFontsIter *iter) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc const (char) *poppler_fonts_iter_get_name(PopplerFontsIter *iter) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc const (char) *poppler_fonts_iter_get_full_name(PopplerFontsIter *iter) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc const (char) *poppler_fonts_iter_get_substitute_name(PopplerFontsIter *iter) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc const (char) *poppler_fonts_iter_get_file_name(PopplerFontsIter *iter) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerFontType poppler_fonts_iter_get_font_type(PopplerFontsIter *iter) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc const (char) *poppler_fonts_iter_get_encoding(PopplerFontsIter *iter) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc gboolean poppler_fonts_iter_is_embedded(PopplerFontsIter *iter) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc gboolean poppler_fonts_iter_is_subset(PopplerFontsIter *iter) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc gboolean poppler_fonts_iter_next(PopplerFontsIter *iter) pure nothrow;
 
 /* Interface for getting the Layers of a poppler_document */
 // #define POPPLER_TYPE_LAYERS_ITER (poppler_layers_iter_get_type())
-// POPPLER_PUBLIC
 @safe @nogc GType poppler_layers_iter_get_type() pure nothrow; // G_GNUC_CONST;
-// POPPLER_PUBLIC
 @safe @nogc PopplerLayersIter *poppler_layers_iter_new(PopplerDocument *document) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerLayersIter *poppler_layers_iter_copy(PopplerLayersIter *iter) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc void poppler_layers_iter_free(PopplerLayersIter *iter) pure nothrow;
 
-// POPPLER_PUBLIC
 @safe @nogc PopplerLayersIter *poppler_layers_iter_get_child(PopplerLayersIter *parent) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc gchar *poppler_layers_iter_get_title(PopplerLayersIter *iter) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc PopplerLayer *poppler_layers_iter_get_layer(PopplerLayersIter *iter) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc gboolean poppler_layers_iter_next(PopplerLayersIter *iter) pure nothrow;
 
 /* Export to ps */
@@ -545,28 +456,24 @@ version (Windows) {
 // #define POPPLER_IS_PS_FILE(obj) (G_TYPE_CHECK_INSTANCE_TYPE((obj), POPPLER_TYPE_PS_FILE))
 // POPPLER_PUBLIC
 @safe @nogc GType poppler_ps_file_get_type() pure nothrow; // G_GNUC_CONST;
-// POPPLER_PUBLIC
 @safe @nogc PopplerPSFile *poppler_ps_file_new(PopplerDocument *document, const char *filename,
                                     int first_page, int n_pages) pure nothrow;
 
 version(Windows) {
 } else {
-// POPPLER_PUBLIC
-@safe @nogc PopplerPSFile *poppler_ps_file_new_fd(PopplerDocument *document, int fd, int first_page, int n_pages) pure nothrow;
+    @safe @nogc PopplerPSFile *poppler_ps_file_new_fd(PopplerDocument *document, int fd,
+                                    int first_page, int n_pages) pure nothrow;
 }
 
-// POPPLER_PUBLIC
 @safe @nogc void poppler_ps_file_set_paper_size(PopplerPSFile *ps_file, double width, double height) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc void poppler_ps_file_set_duplex(PopplerPSFile *ps_file, gboolean duplex) pure nothrow;
-// POPPLER_PUBLIC
 @safe @nogc void poppler_ps_file_free(PopplerPSFile *ps_file) pure nothrow;
 
-// POPPLER_PUBLIC
 @safe @nogc void poppler_document_sign(PopplerDocument *document, const PopplerSigningData *signing_data,
-                    GCancellable *cancellable, GAsyncReadyCallback callback, gpointer user_data) pure nothrow;
-// POPPLER_PUBLIC
-@safe @nogc gboolean poppler_document_sign_finish(PopplerDocument *document, GAsyncResult *result, GError **error) pure nothrow;
+                                    GCancellable *cancellable, GAsyncReadyCallback callback,
+                                    gpointer user_data) pure nothrow;
+@safe @nogc gboolean poppler_document_sign_finish(PopplerDocument *document, GAsyncResult *result,
+                                    GError **error) pure nothrow;
 
 /**
  * PopplerPageRange:
@@ -577,14 +484,12 @@ version(Windows) {
  *
  * Since: 0.80
  */
+/*
 struct _PopplerPageRange // ?
 {
     gint start_page;
     gint end_page;
 }
-
-// G_END_DECLS
-
-// #endif /* __POPPLER_DOCUMENT_H__ */
+*/
 
 }

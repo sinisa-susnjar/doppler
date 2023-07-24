@@ -3,15 +3,15 @@ import std.stdio;
 import doppler.document;
 import doppler.page;
 
-import gtk.MainWindow;
 import gtk.DrawingArea;
-import gtk.Main;
-import gtk.Box;
+import gtk.MainWindow;
 import gtk.Widget;
 import gdk.Event;
+import gtk.Main;
+import gtk.Box;
 import gdk.Keysyms;
-import cairo.Context;
 import cairo.ImageSurface;
+import cairo.Context;
 import cairo.Surface;
 
 void main(string[] args)
