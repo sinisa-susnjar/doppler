@@ -1,5 +1,5 @@
 module doppler.poppler_document;
-
+import doppler.poppler_common;
 import core.stdc.time : time_t;
 
 extern (C) {
@@ -300,35 +300,6 @@ enum PopplerPDFConformance
     POPPLER_PDF_SUBTYPE_CONF_NONE
 }
 
-alias GAsyncReadyCallback = int function(int);
-alias GType = size_t;
-alias GBytes = byte;
-alias gpointer = void*;
-alias gboolean = bool;
-alias goffset = int; // ?
-alias gchar = char;
-alias guint = uint;
-alias gint = int;
-
-struct GDateTime;
-// struct GError;
-struct GCancellable;
-struct PopplerSigningData;
-struct GAsyncResult;
-struct GInputStream;
-struct GFile;
-struct GList;
-struct GTree;
-
-alias GQuark = guint;
-struct GError {
-  GQuark domain;
-  gint code;
-  gchar* message;
-}
-
-@safe @nogc void g_error_free(GError *err) pure nothrow;
-@safe @nogc void g_object_unref(gpointer obj) pure nothrow;
 
 struct PopplerDocument;
 struct PopplerDest;
@@ -340,8 +311,6 @@ struct PopplerFontInfo;
 struct PopplerFontsIter;
 struct PopplerLayer;
 struct PopplerLayersIter;
-struct PopplerPSFile;
-struct PopplerPage;
 
 // POPPLER_PUBLIC
 @safe @nogc GType poppler_document_get_type() pure nothrow; // G_GNUC_CONST;

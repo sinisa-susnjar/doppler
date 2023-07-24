@@ -1,35 +1,40 @@
 {
-    "authors": [ "Sinisa Susnjar" ],
-    "copyright": "Copyright © 2023, Sinisa Susnjar",
-    "description": "D binding for the poppler PDF rendering library",
-    "license": "MIT",
-    "name": "doppler",
-    "preGenerateCommands": [ "$PACKAGE_DIR/pregen" ],
-    "configurations": [
-        {
-            "name": "lib",
-            "targetType": "staticLibrary",
-            "lflags-linux": [
-                "-L$PACKAGE_DIR/3rdparty/poppler/build",
-                "-L$PACKAGE_DIR/3rdparty/poppler/glib/build",
-                "-lpoppler-glib",
-                "-lgobject-2.0",
-                "-lglib-2.0"
-            ],
-            "lflags-osx": [
-                "-L$PACKAGE_DIR/3rdparty/poppler/build",
-                "-L$PACKAGE_DIR/3rdparty/poppler/glib/build",
-                "-lpoppler-glib",
-                "-lgobject-2.0",
-                "-lglib-2.0"
-            ],
-            "lflags-windows": [
-                "-L$PACKAGE_DIR/3rdparty/poppler/build",
-                "-L$PACKAGE_DIR/3rdparty/poppler/glib/build",
-                "-lpoppler-glib",
-                "-lgobject-2.0",
-                "-lglib-2.0"
-            ]
-        }
-    ]
+	"authors": [
+		"Sinisa Susnjar"
+	],
+	"configurations": [
+		{
+			"lflags-linux": [
+				"-L$PACKAGE_DIR/3rdparty/poppler/build",
+				"-L$PACKAGE_DIR/3rdparty/poppler/glib/build",
+				"-lpoppler-glib"
+			],
+			"lflags-osx": [
+				"-L$PACKAGE_DIR/3rdparty/poppler/build",
+				"-L$PACKAGE_DIR/3rdparty/poppler/glib/build",
+				"-lpoppler-glib",
+				"-lgobject-2.0",
+				"-lglib-2.0"
+			],
+			"lflags-windows": [
+				"-L$PACKAGE_DIR/3rdparty/poppler/build",
+				"-L$PACKAGE_DIR/3rdparty/poppler/glib/build",
+				"-lpoppler-glib",
+				"-lgobject-2.0",
+				"-lglib-2.0"
+			],
+			"name": "lib",
+			"targetType": "staticLibrary"
+		}
+	],
+	"copyright": "Copyright © 2023, Sinisa Susnjar",
+	"dependencies": {
+		"gtk-d": "~>3.10.0"
+	},
+	"description": "D bindings for the Poppler PDF rendering library",
+	"license": "MIT",
+	"name": "doppler",
+	"preGenerateCommands": [
+		"$PACKAGE_DIR/pregen"
+	]
 }

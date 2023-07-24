@@ -1,5 +1,8 @@
 module doppler.document;
 import doppler.poppler_document;
+import doppler.poppler_common;
+
+import doppler.page;
 import std.string : toStringz, fromStringz;
 
 struct Document {
@@ -8,6 +11,7 @@ public:
                                 const string password = "")
     {
         immutable (char) *pw = null;
+        import gtkc.glib : g_error_free;
         GError *err = null;
         if (password.length)
             pw = toStringz(password);
@@ -26,14 +30,21 @@ public:
         return poppler_document_get_n_pages(m_doc);
     }
 
+    Page getPage(int index) {
+        assert(m_doc);
+        return Page(poppler_document_get_page(m_doc, index));
+    }
+
     this(ref return scope Document rhs) {
         m_doc = rhs.m_doc;
         rhs.m_doc = null;
     }
 
     ~this() {
-        if (m_doc)
+        if (m_doc) {
+            import gtkc.gobject : g_object_unref;
             g_object_unref(m_doc);
+        }
     }
 
 private:
