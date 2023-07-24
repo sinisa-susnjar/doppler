@@ -4,6 +4,10 @@ import doppler.poppler_common;
 
 // import std.string : toStringz, fromStringz;
 
+import cairo.ImageSurface;
+import cairo.Surface;
+import cairo.Context;
+
 struct Page {
 public:
     void getSize(out double width, out double height) {
@@ -18,6 +22,16 @@ public:
         width = cast(int)(w + 0.5);
         height = cast(int)(h + 0.5);
     }
+
+    void render(Context context) {
+        poppler_page_render(m_page, context.getContextStruct());
+    }
+
+    /*
+    Surface getImage(int imageId) {
+        return ImageSurface.create(poppler_page_get_image(m_page, imageId));
+    }
+    */
 
     this(ref return scope Page rhs) {
         m_page = rhs.m_page;

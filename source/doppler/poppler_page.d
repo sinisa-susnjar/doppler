@@ -42,9 +42,8 @@ extern (C) {
 struct PopplerFormField;
 struct PopplerAction;
 struct PopplerAnnot;
-struct cairo_surface_t;
-struct cairo_region_t;
-struct cairo_t;
+
+import gtkc.cairotypes;
 
 // POPPLER_PUBLIC
 @safe @nogc void poppler_page_render(PopplerPage *page, cairo_t *cairo) pure nothrow;
