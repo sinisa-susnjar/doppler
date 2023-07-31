@@ -4,6 +4,8 @@
 
 ## Linux
 
+### Prerequisites
+
 ## Windows
 
 ### Prerequisites
@@ -14,22 +16,28 @@ Install latest msys2 from https://www.msys2.org/#installation
 
 Install msys2 package mingw-w64-x86_64-poppler using pacman
 
+    pacman -S mingw-w64-x86_64-poppler
+
 Download and install GTK 64 bit runtime from https://gtkd.org/
 
-set PATH=%PATH%;C:\msys64\mingw64\bin;C:\Program Files\Gtk-Runtime\bin REM (order is important!)
+    set PATH=%PATH%;C:\msys64\mingw64\bin;C:\Program Files\Gtk-Runtime\bin
 
-# choco install pkgconfiglite
-# install msys2
-# pacman -S --needed git base-devel mingw-w64-x86_64-toolchain mingw-w64-x86_64-cmake
-# choco install poppler
-# Install FreeType from https://gnuwin32.sourceforge.net/downlinks/freetype.php
+(order is important!)
 
-Open a windows command prompt and run
+### Open a windows command prompt and run
 
     dub build
 
-cd into examples/pdfview and run
+then change directory into examples/pdfview and run
 
     dub build
+
+Run the sample
+
+    pdfview file:/Users/sini/src/doppler/example/pdfview/gtk3.pdf
 
 ## MacOS
+
+### Prerequisites
+
+### TODO

@@ -27,7 +27,7 @@ void main(string[] args)
 }   // main()
 
 class PdfViewWindow : MainWindow {
-    string title = "Display PDF";
+    immutable string title = "Display PDF";
     AppBox appBox;
 
     this(string filename) {
@@ -42,13 +42,6 @@ class PdfViewWindow : MainWindow {
                 int width, height;
                 page.getSize(width, height);
                 setSizeRequest(width, height);
-            }
-
-            foreach (n; 0..nPages) {
-                auto page = doc.getPage(n);
-                int width, height;
-                page.getSize(width, height);
-                writefln("  #%d: w: %G h: %G", n, width, height);
             }
 
             addOnDestroy(&quitApp);
