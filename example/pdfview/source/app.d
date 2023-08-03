@@ -27,7 +27,7 @@ void main(string[] args)
 }   // main()
 
 class PdfViewWindow : MainWindow {
-    string title = "Display PDF";
+    immutable string title = "Display PDF";
     AppBox appBox;
 
     this(string filename) {
@@ -42,13 +42,6 @@ class PdfViewWindow : MainWindow {
                 int width, height;
                 page.getSize(width, height);
                 setSizeRequest(width, height);
-            }
-
-            foreach (n; 0..nPages) {
-                auto page = doc.getPage(n);
-                int width, height;
-                page.getSize(width, height);
-                writefln("  #%d: w: %G h: %G", n, width, height);
             }
 
             addOnDestroy(&quitApp);
@@ -101,7 +94,7 @@ class MyDrawingArea : DrawingArea {
         addOnKeyPress((Event e, Widget widget) {
             uint keyVal;
             e.getKeyval(keyVal);
-            final switch (keyVal) {
+            switch (keyVal) {
                 case Keysyms.GDK_Escape:
                     writefln("Bye!");
                     Main.quit();
@@ -120,6 +113,8 @@ class MyDrawingArea : DrawingArea {
                         queueDraw();
                     }
                     break;
+                default:
+                    // ignore
             }
             return true;
         });

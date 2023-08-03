@@ -1,7 +1,5 @@
 {
-	"authors": [
-		"Sinisa Susnjar"
-	],
+	"authors": [ "Sinisa Susnjar" ],
 	"configurations": [
 		{
 			"lflags-linux": [
@@ -10,18 +8,11 @@
 				"-lpoppler-glib"
 			],
 			"lflags-osx": [
-				"-L$PACKAGE_DIR/3rdparty/poppler/build",
-				"-L$PACKAGE_DIR/3rdparty/poppler/glib/build",
-				"-lpoppler-glib",
-				"-lgobject-2.0",
-				"-lglib-2.0"
+                "TODO"
 			],
 			"lflags-windows": [
-				"-L$PACKAGE_DIR/3rdparty/poppler/build",
-				"-L$PACKAGE_DIR/3rdparty/poppler/glib/build",
-				"-lpoppler-glib",
-				"-lgobject-2.0",
-				"-lglib-2.0"
+                "c:/msys64/mingw64/lib/libpoppler-glib.dll.a",
+                "c:/msys64/mingw64/lib/libpoppler.dll.a"
 			],
 			"name": "lib",
 			"targetType": "staticLibrary"
@@ -33,8 +24,5 @@
 	},
 	"description": "D bindings for the Poppler PDF rendering library",
 	"license": "MIT",
-	"name": "doppler",
-	"preGenerateCommands": [
-		"$PACKAGE_DIR/pregen"
-	]
+	"name": "doppler"
 }
