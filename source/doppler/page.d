@@ -27,6 +27,14 @@ public:
         poppler_page_render(m_page, context.getContextStruct());
     }
 
+    void renderForPrinting(Context context) {
+        poppler_page_render_for_printing(m_page, context.getContextStruct());
+    }
+
+    Surface getImage(int imageId) {
+        return new Surface(poppler_page_get_image(m_page, imageId));
+    }
+
     /*
     Surface getImage(int imageId) {
         return ImageSurface.create(poppler_page_get_image(m_page, imageId));
