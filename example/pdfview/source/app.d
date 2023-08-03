@@ -1,7 +1,6 @@
 import std.stdio;
 
 import doppler.document;
-import doppler.page;
 
 import gtk.DrawingArea;
 import gtk.MainWindow;
@@ -20,78 +19,61 @@ void main(string[] args)
         writefln("usage: %s file:full-path-to-pdf\n", args[0]);
         return;
     }
-    PdfViewWindow pdfViewWindow;
     Main.init(args);
-    pdfViewWindow = new PdfViewWindow(args[1]);
+    auto pdfViewWindow = new PdfViewWindow(args[1]);
     Main.run();
-}   // main()
+} // main()
 
 class PdfViewWindow : MainWindow {
-    immutable string title = "Display PDF";
-    AppBox appBox;
-
     this(string filename) {
-        super(title);
+        super("Display PDF Example");
 
         try {
             auto doc = Document.loadFromFile(filename);
             auto nPages = doc.getNPages();
             writefln("%s has %d pages", filename, nPages);
-            if (nPages > 0) {
-                auto page = doc.getPage(0);
-                int width, height;
-                page.getSize(width, height);
-                setSizeRequest(width, height);
-            }
-
+            assert(nPages > 0);
             addOnDestroy(&quitApp);
-
-            appBox = new AppBox(doc);
-            add(appBox);
-
+            add(new AppBox(doc));
             showAll();
         } catch (Exception e) {
             writefln("caught exception: %s", e.msg);
             Main.quit();
         }
-	}
+    }
 
-	void quitApp(Widget widget) {
-		writeln("Bye.");
-		Main.quit();
-	}
-}   // PdfViewWindow
+    void quitApp(Widget) {
+        writeln("Bye.");
+        Main.quit();
+    }
+} // PdfViewWindow
 
 class AppBox : Box {
-	MyDrawingArea myDrawingArea;
-
-	this(Document doc) {
-		super(Orientation.VERTICAL, 10);
-		myDrawingArea = new MyDrawingArea(doc);
-		packStart(myDrawingArea, true, true, 0);
-	}
-}   // AppBox
+    this(Document doc) {
+        super(Orientation.VERTICAL, 10);
+        packStart(new MyDrawingArea(doc), true, true, 0);
+    }
+} // AppBox
 
 class MyDrawingArea : DrawingArea {
-	immutable int xOffset = 0, yOffset = 0;
     Document document;
-	Surface surface;
+    Surface surface;
     int pageNo = 0;
     int nPages;
     Page page;
 
-	this(Document doc) {
+    this(Document doc) {
         document = doc;
         nPages = document.getNPages();
         page = document.getPage(pageNo);
         int width, height;
         page.getSize(width, height);
+        setSizeRequest(width, height);
         surface = ImageSurface.create(CairoFormat.ARGB32, width, height);
-		addOnDraw(&onDraw);
-
+        addOnDraw(&onDraw);
         setCanFocus(true);
         setEvents(EventMask.KEY_PRESS_MASK);
-        addOnKeyPress((Event e, Widget widget) {
+        addOnKeyPress((Event e, Widget) {
             uint keyVal;
             e.getKeyval(keyVal);
             switch (keyVal) {
@@ -101,29 +83,26 @@ class MyDrawingArea : DrawingArea {
                     break;
                 case Keysyms.GDK_Right:
                     if (pageNo < nPages-1) {
-                        pageNo++;
-                        page = document.getPage(pageNo);
+                        page = document.getPage(++pageNo);
                         queueDraw();
                     }
                     break;
                 case Keysyms.GDK_Left:
                     if (pageNo > 0) {
-                        pageNo--;
-                        page = document.getPage(pageNo);
+                        page = document.getPage(--pageNo);
                         queueDraw();
                     }
                     break;
-                default:
-                    // ignore
+                default: // ignore
             }
             return true;
         });
-	}
+    }
 
-	bool onDraw(Scoped!Context context, Widget) {
-        context.setSourceSurface(surface, xOffset, yOffset);
+    bool onDraw(Scoped!Context context, Widget) {
+        context.setSourceSurface(surface, 0, 0);
         page.render(context);
-		context.paint();
-		return true;
-	}
-}   // MyDrawingArea
+        context.paint();
+        return true;
+    }
+} // MyDrawingArea

@@ -2,7 +2,7 @@ module doppler.document;
 import doppler.poppler_document;
 import doppler.poppler_common;
 
-import doppler.page;
+public import doppler.page;
 import std.string : toStringz, fromStringz;
 
 struct Document {
