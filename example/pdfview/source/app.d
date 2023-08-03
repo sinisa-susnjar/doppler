@@ -94,7 +94,7 @@ class MyDrawingArea : DrawingArea {
         addOnKeyPress((Event e, Widget widget) {
             uint keyVal;
             e.getKeyval(keyVal);
-            final switch (keyVal) {
+            switch (keyVal) {
                 case Keysyms.GDK_Escape:
                     writefln("Bye!");
                     Main.quit();
@@ -113,6 +113,8 @@ class MyDrawingArea : DrawingArea {
                         queueDraw();
                     }
                     break;
+                default:
+                    // ignore
             }
             return true;
         });
