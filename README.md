@@ -22,7 +22,7 @@ Download and install GTK 64 bit runtime from https://gtkd.org/
 
     set PATH=%PATH%;C:\msys64\mingw64\bin;C:\Program Files\Gtk-Runtime\bin
 
-(order is important!)
+(order of the path is important!)
 
 ### Open a windows command prompt and run
 
