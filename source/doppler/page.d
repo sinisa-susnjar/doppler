@@ -10,6 +10,13 @@ import cairo.Context;
 
 struct Page {
 public:
+    auto getSize() {
+        import std.typecons : tuple;
+        int width, height;
+        getSize(width, height);
+        return tuple!("width", "height")(width, height);
+    }
+
     void getSize(out double width, out double height) {
         assert(m_page);
         poppler_page_get_size(m_page, &width, &height);
@@ -31,15 +38,9 @@ public:
         poppler_page_render_for_printing(m_page, context.getContextStruct());
     }
 
-    Surface getImage(int imageId) {
-        return new Surface(poppler_page_get_image(m_page, imageId));
+    ImageSurface getImage(int imageId) {
+        return new ImageSurface(poppler_page_get_image(m_page, imageId));
     }
-
-    /*
-    Surface getImage(int imageId) {
-        return ImageSurface.create(poppler_page_get_image(m_page, imageId));
-    }
-    */
 
     this(ref return scope Page rhs) {
         m_page = rhs.m_page;
