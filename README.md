@@ -4,6 +4,8 @@
 
 ## Linux
 
+    sudo apt install libpoppler-glib8
+
 ### Prerequisites
 
 ## Windows

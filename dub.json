@@ -3,9 +3,7 @@
 	"configurations": [
 		{
 			"lflags-linux": [
-				"-L$PACKAGE_DIR/3rdparty/poppler/build",
-				"-L$PACKAGE_DIR/3rdparty/poppler/glib/build",
-				"-lpoppler-glib"
+                "/usr/lib/x86_64-linux-gnu/libpoppler-glib.so.8"
 			],
 			"lflags-osx": [
                 "TODO"
