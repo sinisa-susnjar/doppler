@@ -31,6 +31,8 @@ The current functionality encloses:
 
 ## Linux
 
+    sudo apt install libpoppler-glib8
+
 ### Prerequisites
 
 Install Poppler glib package, Ubuntu 22.04 example (ymmv):
@@ -88,4 +90,3 @@ Does anyone have a Macbook and want's to help out?
 ### TODO
 
 A lot!
-
