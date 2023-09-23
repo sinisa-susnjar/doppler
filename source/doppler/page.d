@@ -2,8 +2,6 @@ module doppler.page;
 import doppler.poppler_page;
 import doppler.poppler_common;
 
-// import std.string : toStringz, fromStringz;
-
 import cairo.ImageSurface;
 import cairo.Surface;
 import cairo.Context;

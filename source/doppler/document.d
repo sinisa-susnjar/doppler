@@ -18,7 +18,6 @@ public:
         auto doc = poppler_document_new_from_file(toStringz(fileName), pw, &err);
         if (err !is null) {
             string msg = cast(string)fromStringz(err.message).dup;
-            // int code = err.code;
             g_error_free(err);
             throw new Exception(msg);
         }

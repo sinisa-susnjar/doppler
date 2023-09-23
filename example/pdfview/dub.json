@@ -1,7 +1,7 @@
 {
     "authors": [ "Sinisa Susnjar" ],
     "copyright": "Copyright © 2023, Sinisa Susnjar",
-    "description": "Sample PDF viewer using doppler library",
+    "description": "Sample PDF viewer using GTK-D and doppler library",
     "license": "MIT",
     "name": "pdfview",
     "dependencies": {
