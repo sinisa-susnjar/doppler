@@ -1,11 +1,9 @@
 # Doppler - D bindings for the Poppler PDF rendering library
 
-This library provides a D wrapper around the Poppler PDF rendering library.
-The current functionality is limited to displaying PDF documents loaded from
-a file.
+This library provides a D wrapper around the Poppler PDF rendering library (poppler-23.07.0).
+The current functionality is limited to displaying PDF documents loaded from a file.
 
-No actual PDF generating abilities have been wrapped yet, but I am happy to
-add them here if requested.
+No actual PDF generating abilities have been wrapped yet, but I am happy to add them here if requested.
 
 The current functionality encloses:
 
@@ -90,3 +88,7 @@ Does anyone have a Macbook and want's to help out?
 ### TODO
 
 A lot!
+
+# Releases
+
+v0.0.1 first release
