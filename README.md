@@ -81,7 +81,7 @@ Run the sample
 
 **TODO**
 
-Does anyone have a Macbook and want's to help out?
+Does anyone have a Macbook and wants to help out?
 
 ### Prerequisites
 
