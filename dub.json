@@ -14,7 +14,7 @@
             "lflags-osx": [
                 "TODO"
             ],
-            "name": "lib",
+            "name": "library",
             "targetType": "staticLibrary"
         }
     ],
