@@ -1,10 +1,27 @@
 {
-    "authors": [ "Sinisa Susnjar" ],
-    "copyright": "Copyright © 2023, Sinisa Susnjar",
-    "description": "Sample PDF viewer using GTK-D and doppler library",
-    "license": "MIT",
-    "name": "pdfview",
-    "dependencies": {
-        "doppler": { "path": "../../" }
+  "authors": [
+    "Sinisa Susnjar"
+  ],
+  "copyright": "Copyright © 2023, Sinisa Susnjar",
+  "description": "Sample PDF viewer using GTK-D and doppler library",
+  "license": "MIT",
+  "name": "pdfview",
+  "dependencies": {
+    "doppler": {
+      "path": "../../"
     }
+  },
+  "configurations": [
+    {
+      "name": "binary",
+      "targetType": "executable"
+    },
+    {
+      "dflags-linux": [
+        "-fsanitize=address"
+      ],
+      "name": "asan",
+      "targetType": "executable"
+    }
+  ]
 }

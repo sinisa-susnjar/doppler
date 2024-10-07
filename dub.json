@@ -1,26 +1,42 @@
 {
-    "authors": [ "Sinisa Susnjar" ],
-    "copyright": "Copyright © 2023, Sinisa Susnjar",
-    "description": "D bindings for the Poppler PDF rendering library",
-    "configurations": [
-        {
-            "lflags-linux": [
-                "/usr/lib/x86_64-linux-gnu/libpoppler-glib.so.8"
-            ],
-            "lflags-windows": [
-                "c:/msys64/mingw64/lib/libpoppler-glib.dll.a",
-                "c:/msys64/mingw64/lib/libpoppler.dll.a"
-            ],
-            "lflags-osx": [
-                "TODO"
-            ],
-            "name": "library",
-            "targetType": "staticLibrary"
-        }
-    ],
-    "dependencies": {
-        "gtk-d": "~>3.10.0"
+  "authors": [
+    "Sinisa Susnjar"
+  ],
+  "copyright": "Copyright © 2023, Sinisa Susnjar",
+  "description": "D bindings for the Poppler PDF rendering library",
+  "configurations": [
+    {
+      "lflags-linux": [
+        "/usr/lib/x86_64-linux-gnu/libpoppler-glib.so.8"
+      ],
+      "lflags-windows": [
+        "c:/msys64/mingw64/lib/libpoppler-glib.dll.a",
+        "c:/msys64/mingw64/lib/libpoppler.dll.a"
+      ],
+      "lflags-osx": [
+        "TODO"
+      ],
+      "name": "library",
+      "targetType": "staticLibrary"
     },
-    "license": "MIT",
-    "name": "doppler"
+    {
+      "lflags-linux": [
+        "/usr/lib/x86_64-linux-gnu/libpoppler-glib.so.8"
+      ],
+      "lflags-windows": [
+        "c:/msys64/mingw64/lib/libpoppler-glib.dll.a",
+        "c:/msys64/mingw64/lib/libpoppler.dll.a"
+      ],
+      "lflags-osx": [
+        "TODO"
+      ],
+      "name": "asan",
+      "targetType": "staticLibrary"
+    }
+  ],
+  "dependencies": {
+    "gtk-d": "~>3.10.0"
+  },
+  "license": "MIT",
+  "name": "doppler"
 }

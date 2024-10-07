@@ -40,7 +40,7 @@ struct PopplerPage;
  */
 
 extern (C) {
-    @safe @nogc GQuark poppler_error_quark() pure nothrow;
+  @safe @nogc GQuark poppler_error_quark() pure nothrow;
 }
 
 // #define POPPLER_ERROR poppler_error_quark()
@@ -55,14 +55,13 @@ extern (C) {
  *
  * Error codes returned by #PopplerDocument
  */
-enum PopplerError
-{
-    POPPLER_ERROR_INVALID,
-    POPPLER_ERROR_ENCRYPTED,
-    POPPLER_ERROR_OPEN_FILE,
-    POPPLER_ERROR_BAD_CATALOG,
-    POPPLER_ERROR_DAMAGED,
-    POPPLER_ERROR_SIGNING
+enum PopplerError {
+  POPPLER_ERROR_INVALID,
+  POPPLER_ERROR_ENCRYPTED,
+  POPPLER_ERROR_OPEN_FILE,
+  POPPLER_ERROR_BAD_CATALOG,
+  POPPLER_ERROR_DAMAGED,
+  POPPLER_ERROR_SIGNING
 }
 
 /**
@@ -86,20 +85,19 @@ enum PopplerError
  *
  * Page transition types
  */
-enum PopplerPageTransitionType
-{
-    POPPLER_PAGE_TRANSITION_REPLACE,
-    POPPLER_PAGE_TRANSITION_SPLIT,
-    POPPLER_PAGE_TRANSITION_BLINDS,
-    POPPLER_PAGE_TRANSITION_BOX,
-    POPPLER_PAGE_TRANSITION_WIPE,
-    POPPLER_PAGE_TRANSITION_DISSOLVE,
-    POPPLER_PAGE_TRANSITION_GLITTER,
-    POPPLER_PAGE_TRANSITION_FLY,
-    POPPLER_PAGE_TRANSITION_PUSH,
-    POPPLER_PAGE_TRANSITION_COVER,
-    POPPLER_PAGE_TRANSITION_UNCOVER,
-    POPPLER_PAGE_TRANSITION_FADE
+enum PopplerPageTransitionType {
+  POPPLER_PAGE_TRANSITION_REPLACE,
+  POPPLER_PAGE_TRANSITION_SPLIT,
+  POPPLER_PAGE_TRANSITION_BLINDS,
+  POPPLER_PAGE_TRANSITION_BOX,
+  POPPLER_PAGE_TRANSITION_WIPE,
+  POPPLER_PAGE_TRANSITION_DISSOLVE,
+  POPPLER_PAGE_TRANSITION_GLITTER,
+  POPPLER_PAGE_TRANSITION_FLY,
+  POPPLER_PAGE_TRANSITION_PUSH,
+  POPPLER_PAGE_TRANSITION_COVER,
+  POPPLER_PAGE_TRANSITION_UNCOVER,
+  POPPLER_PAGE_TRANSITION_FADE
 }
 
 /**
@@ -110,10 +108,9 @@ enum PopplerPageTransitionType
  * Page transition alignment types for #POPPLER_PAGE_TRANSITION_SPLIT
  * and #POPPLER_PAGE_TRANSITION_BLINDS transition types
  */
-enum PopplerPageTransitionAlignment
-{
-    POPPLER_PAGE_TRANSITION_HORIZONTAL,
-    POPPLER_PAGE_TRANSITION_VERTICAL
+enum PopplerPageTransitionAlignment {
+  POPPLER_PAGE_TRANSITION_HORIZONTAL,
+  POPPLER_PAGE_TRANSITION_VERTICAL
 }
 
 /**
@@ -124,10 +121,9 @@ enum PopplerPageTransitionAlignment
  * Page transition direction types for #POPPLER_PAGE_TRANSITION_SPLIT,
  * #POPPLER_PAGE_TRANSITION_BOX and #POPPLER_PAGE_TRANSITION_FLY transition types
  */
-enum PopplerPageTransitionDirection
-{
-    POPPLER_PAGE_TRANSITION_INWARD,
-    POPPLER_PAGE_TRANSITION_OUTWARD
+enum PopplerPageTransitionDirection {
+  POPPLER_PAGE_TRANSITION_INWARD,
+  POPPLER_PAGE_TRANSITION_OUTWARD
 }
 
 /**
@@ -138,11 +134,10 @@ enum PopplerPageTransitionDirection
  *
  * Selection styles
  */
-enum PopplerSelectionStyle
-{
-    POPPLER_SELECTION_GLYPH,
-    POPPLER_SELECTION_WORD,
-    POPPLER_SELECTION_LINE
+enum PopplerSelectionStyle {
+  POPPLER_SELECTION_GLYPH,
+  POPPLER_SELECTION_WORD,
+  POPPLER_SELECTION_LINE
 }
 
 /**
@@ -157,12 +152,11 @@ enum PopplerSelectionStyle
  * Since: 0.16
  */
 /*< flags >*/
-enum PopplerPrintFlags
-{
-    POPPLER_PRINT_DOCUMENT = 0,
-    POPPLER_PRINT_MARKUP_ANNOTS = 1 << 0,
-    POPPLER_PRINT_STAMP_ANNOTS_ONLY = 1 << 1,
-    POPPLER_PRINT_ALL = POPPLER_PRINT_MARKUP_ANNOTS
+enum PopplerPrintFlags {
+  POPPLER_PRINT_DOCUMENT = 0,
+  POPPLER_PRINT_MARKUP_ANNOTS = 1 << 0,
+  POPPLER_PRINT_STAMP_ANNOTS_ONLY = 1 << 1,
+  POPPLER_PRINT_ALL = POPPLER_PRINT_MARKUP_ANNOTS
 }
 
 /**
@@ -184,14 +178,13 @@ enum PopplerPrintFlags
  * Since: 0.22
  */
 /*< flags >*/
-enum PopplerFindFlags
-{
-    POPPLER_FIND_DEFAULT = 0,
-    POPPLER_FIND_CASE_SENSITIVE = 1 << 0,
-    POPPLER_FIND_BACKWARDS = 1 << 1,
-    POPPLER_FIND_WHOLE_WORDS_ONLY = 1 << 2,
-    POPPLER_FIND_IGNORE_DIACRITICS = 1 << 3,
-    POPPLER_FIND_MULTILINE = 1 << 4
+enum PopplerFindFlags {
+  POPPLER_FIND_DEFAULT = 0,
+  POPPLER_FIND_CASE_SENSITIVE = 1 << 0,
+  POPPLER_FIND_BACKWARDS = 1 << 1,
+  POPPLER_FIND_WHOLE_WORDS_ONLY = 1 << 2,
+  POPPLER_FIND_IGNORE_DIACRITICS = 1 << 3,
+  POPPLER_FIND_MULTILINE = 1 << 4
 }
 
 /**
@@ -202,14 +195,13 @@ enum PopplerFindFlags
  *
  * Backend codes returned by poppler_get_backend().
  */
-enum PopplerBackend
-{
-    POPPLER_BACKEND_UNKNOWN,
-    POPPLER_BACKEND_SPLASH,
-    POPPLER_BACKEND_CAIRO
+enum PopplerBackend {
+  POPPLER_BACKEND_UNKNOWN,
+  POPPLER_BACKEND_SPLASH,
+  POPPLER_BACKEND_CAIRO
 }
 
 extern (C) {
-    @safe @nogc PopplerBackend poppler_get_backend() pure nothrow;
-    @safe @nogc const (char) *poppler_get_version() pure nothrow;
+  @safe @nogc PopplerBackend poppler_get_backend() pure nothrow;
+  @safe @nogc const(char)* poppler_get_version() pure nothrow;
 }

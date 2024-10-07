@@ -1,3 +1,6 @@
 [*]
-indent_style = space 
-indent_size = 4
+max_line_length = 120
+indent_style = space
+indent_size = 2
+dfmt_brace_style = knr
+dfmt_soft_max_line_length = 100
