@@ -1,5 +1,6 @@
 module doppler.poppler_page;
 import doppler.poppler_common;
+import doppler.poppler_annot : PopplerAnnot;
 
 extern (C) {
 
@@ -29,7 +30,6 @@ extern (C) {
 
   struct PopplerFormField;
   struct PopplerAction;
-  struct PopplerAnnot;
 
   import gtkc.cairotypes;
 

@@ -10,18 +10,33 @@ public:
   static Document loadFromFile(const string fileName, const string password = "")
   {
     immutable(char)* pw = null;
-    import gtkc.glib : g_error_free;
 
     GError* err = null;
     if (password.length)
       pw = toStringz(password);
     auto doc = poppler_document_new_from_file(toStringz(fileName), pw, &err);
     if (err !is null) {
+      import gtkc.glib : g_error_free;
+
       string msg = cast(string) fromStringz(err.message).dup;
       g_error_free(err);
       throw new Exception(msg);
     }
     return Document(doc);
+  }
+
+  bool saveToFile(const string fileName)
+  {
+    GError* err = null;
+    bool ret = poppler_document_save(m_doc, toStringz(fileName), &err);
+    if (err !is null) {
+      import gtkc.glib : g_error_free;
+
+      string msg = cast(string) fromStringz(err.message).dup;
+      g_error_free(err);
+      throw new Exception(msg);
+    }
+    return ret;
   }
 
   int getNPages()

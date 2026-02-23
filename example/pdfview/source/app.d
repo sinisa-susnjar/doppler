@@ -84,6 +84,9 @@ class MyDrawingArea : DrawingArea {
       case Keysyms.GDK_Escape:
         writefln("Bye!");
         Main.quit();
+        import core.stdc.stdlib : exit;
+
+        exit(0);
         break;
       case Keysyms.GDK_Right:
         if (pageNo < nPages - 1) {
@@ -111,4 +114,3 @@ class MyDrawingArea : DrawingArea {
     return true;
   }
 } // MyDrawingArea
-

@@ -38,7 +38,7 @@
     }
   ],
   "dependencies": {
-    "gtk-d": "~>3.10.0"
+    "gtk-d": "~>3.11.0"
   },
   "license": "MIT",
   "name": "doppler"

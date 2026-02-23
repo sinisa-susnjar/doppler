@@ -1,15 +1,18 @@
 # Doppler - D bindings for the Poppler PDF rendering library
 
 This library provides a D wrapper around the Poppler PDF rendering library (poppler-23.07.0).
-The current functionality is limited to displaying PDF documents loaded from a file.
+The current functionality is limited to displaying PDF documents loaded from a file, adding
+annotations, then saving the file.
 
-No actual PDF generating abilities have been wrapped yet, but I am happy to add them here if requested.
+I am happy to add more functionality here if requested.
 
 The current functionality encloses:
 
 * Document
 
   static Document loadFromFile(string fileName, string password = "");
+
+  bool saveToFile(string fileName);
 
   int getNPages();
 
@@ -92,3 +95,4 @@ A lot!
 # Releases
 
 v0.0.1 first release
+v0.1.0 added annotations, save functionality

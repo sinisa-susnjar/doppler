@@ -19,6 +19,7 @@ public import gtkc.glibtypes : GDateTime, GList, GTree, GError;
 
 struct PopplerPSFile;
 struct PopplerPage;
+struct PopplerDocument;
 
 /* poppler.h: glib interface to poppler
  * Copyright (C) 2004, Red Hat, Inc.

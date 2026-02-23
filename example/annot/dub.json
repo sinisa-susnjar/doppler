@@ -1,0 +1,27 @@
+{
+  "authors": [
+    "Sinisa Susnjar"
+  ],
+  "copyright": "Copyright © 2025, Sinisa Susnjar",
+  "description": "Sample PDF annotation using the doppler library",
+  "license": "MIT",
+  "name": "annot",
+  "dependencies": {
+    "doppler": {
+      "path": "../../"
+    }
+  },
+  "configurations": [
+    {
+      "name": "binary",
+      "targetType": "executable"
+    },
+    {
+      "dflags-linux": [
+        "-fsanitize=address"
+      ],
+      "name": "asan",
+      "targetType": "executable"
+    }
+  ]
+}

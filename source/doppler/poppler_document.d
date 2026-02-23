@@ -281,7 +281,6 @@ extern (C) {
     POPPLER_PDF_SUBTYPE_CONF_NONE
   }
 
-  struct PopplerDocument;
   struct PopplerDest;
   struct PopplerAction;
   struct PopplerPageRange;
